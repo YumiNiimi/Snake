@@ -9,13 +9,12 @@ public class Resources {
         // 3. Initialize the variable by copying and pasting and modifying the
         //    ImageIO line.
 
-    public static BufferedImage you_win;
+    public static BufferedImage apple;
 
     static{
         try{
-            you_win = ImageIO.read(new File("./res/youwin.png"));
+            apple = ImageIO.read(new File("./res/apple.png"));
 
-            }catch(Exception e){e.printStackTrace();}
-        }
+        }catch(Exception e){e.printStackTrace();}
     }
 }
