@@ -27,7 +27,7 @@ public class SnakeMain extends JPanel{
         this.n = 0;
         this.lives = 3;
 
-        board = new Board(530, 530);
+        board = new Board(35, 35);
 
         snakeBody = new ArrayList<>();
 
@@ -116,8 +116,8 @@ public class SnakeMain extends JPanel{
         JFrame window = new JFrame("");
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        window.setBounds(420, 0, 600,  650 + 28); // title bar is 28 pixels!
-        JPanel panel = new SnakeMain(600, 650);
+        window.setBounds(420, 0, 650,  650 + 28); // title bar is 28 pixels!
+        JPanel panel = new SnakeMain(650, 650);
 
         panel.setFocusable(true);
         panel.grabFocus();
