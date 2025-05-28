@@ -34,11 +34,11 @@ public class Board {
             for (int c = 0; c < 15; c++) {
                 if (cells[r][c] == 0) {
                     g2.setColor(new Color(179, 214, 101));
-                    g2.fillRect(r*w + 27, c*w + 95, w, h);
+                    g2.fillRect(r*w + 27, c*w + 97, w, h);
                 }
                 if(cells[r][c] == 1) {
                     g2.setColor(new Color(164, 199, 94));
-                    g2.fillRect(r*w + 27, c*w + 95, w, h);
+                    g2.fillRect(r*w + 27, c*w + 97, w, h);
                 }
             }
         }

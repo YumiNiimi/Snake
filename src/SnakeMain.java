@@ -28,7 +28,7 @@ public class SnakeMain extends JPanel{
         this.lives = 3;
 
         board = new Board(35, 35);
-
+        snake = new Snake(new Point(1, 1));
         snakeBody = new ArrayList<>();
 
             //how to add a new snake
@@ -74,7 +74,6 @@ public class SnakeMain extends JPanel{
             // so the graphics can update at any time
         g2.setColor(Color.BLACK);
 
-
         for(Sprite sprite : snakeBody)
             sprite.draw(g2);
 
@@ -88,8 +87,9 @@ public class SnakeMain extends JPanel{
             g2.drawString("YOU WIN", 110, 300);
         }
         board.draw(g2);
+        snake.draw(g2);
 
-    }
+        }
 
     private boolean[] keys;
 
