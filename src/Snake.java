@@ -3,7 +3,7 @@ import java.awt.image.BufferedImage;
 
 public class Snake extends Sprite {
 
-    int direction;
+    int dir;
     public static final int down = 1, up = 2, left = 3, right = 4;
 
     public Snake(Point location) {
@@ -12,17 +12,27 @@ public class Snake extends Sprite {
 
     public void draw(Graphics2D g2) {
         g2.setColor(new Color(80, 144, 225));
-        g2.fillRoundRect(200, 325, 50, 25, 15, 15);
+        g2.fillRoundRect(125, 342, 100, 35, 35, 35);
     }
 
     public void move() {
 
-        //if(dir = down)
-        //translate / move (0, 4) (4 = speed)
+        if(dir == down) {
+            move(0, 4); //(4 = speed)
+        }
+        if(dir == up) {
+            move(0, -4); //(4 = speed)
+        }
+        if(dir == left) {
+            move(-4, 0); //(4 = speed)
+        }
+        if(dir == right) {
+            move(4, 0); //(4 = speed)
+        }
     }
 
-    public void changDir(int direction){
-        this.direction = direction;
+    public void changDir(int dir){
+        this.dir = dir;
     }
 
 }

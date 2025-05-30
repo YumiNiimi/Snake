@@ -12,7 +12,7 @@ public class SnakeMain extends JPanel{
     private Timer timer;
 
     private Snake snake;
-    private ArrayList<Sprite> snakeBody;
+    private ArrayList<Snake> snakeBody;
     private ArrayList<Apple> apples;
 
     private int lives;
@@ -44,9 +44,14 @@ public class SnakeMain extends JPanel{
         // called every frame (60 times per second by default) by the timer
     public void update(){
             // update any time-based changes here
-        for(Sprite sprite: snakeBody) {
-                sprite.move();
-        }
+//        for(Sprite sprite: snakeBody) {
+//                sprite.move();
+//        }
+        int dx = 0;
+        if(keys[KeyEvent.VK_A] || keys[KeyEvent.VK_LEFT])
+            dx = -1;
+        if(keys[KeyEvent.VK_D] || keys[KeyEvent.VK_RIGHT])
+            dx = 1;
         boolean dead = false;
 
             //if the snake hits itself
@@ -62,6 +67,7 @@ public class SnakeMain extends JPanel{
 //            snake.setY(568);
 //        }
 
+        snake.move();
         repaint();
     }
 
@@ -100,13 +106,13 @@ public class SnakeMain extends JPanel{
         public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
             if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP)
-                snake.move(0, -1);
+                snake.changDir(2);
             if(key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN)
-                snake.move(0, 1);
+                snake.changDir(1);
             if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT)
-                snake.move(-1, 0);
+                snake.changDir(3);
             if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT)
-                snake.move(1, 0);
+                snake.changDir(4);
         }
         });
         }
