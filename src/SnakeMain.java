@@ -12,7 +12,6 @@ public class SnakeMain extends JPanel{
     private Timer timer;
 
     private Snake snake;
-    private ArrayList<Snake> snakeBody;
     private ArrayList<Apple> apples;
 
     private int lives;
@@ -29,7 +28,6 @@ public class SnakeMain extends JPanel{
 
         board = new Board(35, 35);
         snake = new Snake(new Point(1, 1));
-        snakeBody = new ArrayList<>();
 
             //how to add a new snake
             //sprites.add(new Turtle(Resources.turtle, new Point(410, 118), -3));
@@ -37,7 +35,7 @@ public class SnakeMain extends JPanel{
             //snake = new Sprite(Resources.snake, new Point(280, 568));
 
         timer = new Timer(1000/60, e->update());
-//        timer.start();
+        timer.start();
         setupKeyListener();
     }
 
@@ -80,8 +78,8 @@ public class SnakeMain extends JPanel{
             // so the graphics can update at any time
         g2.setColor(Color.BLACK);
 
-        for(Sprite sprite : snakeBody)
-            sprite.draw(g2);
+//        for(Sprite sprite : snakeBody)
+//            sprite.draw(g2);
 
         g2.setColor(Color.WHITE);
         g2.setFont(new Font("Georgia", Font.PLAIN, 80));
