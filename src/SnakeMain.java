@@ -17,16 +17,17 @@ public class SnakeMain extends JPanel{
     private int lives;
     private int n;
 
+    private int framecounter;
     private Board board;
 
 
 
     public SnakeMain(int w, int h){
         setSize(w, h);
-        this.n = 0;
-        this.lives = 3;
-
-        board = new Board(35, 35);
+        n = 0;
+        lives = 3;
+        framecounter = 0;
+        board = new Board(36, 36);
         snake = new Snake(new Point(1, 1));
 
             //how to add a new snake
@@ -41,18 +42,15 @@ public class SnakeMain extends JPanel{
 
         // called every frame (60 times per second by default) by the timer
     public void update(){
-            // update any time-based changes here
+        framecounter++;
+        // update any time-based changes here
 //        for(Sprite sprite: snakeBody) {
 //                sprite.move();
 //        }
-        int dx = 0;
-        if(keys[KeyEvent.VK_A] || keys[KeyEvent.VK_LEFT])
-            dx = -1;
-        if(keys[KeyEvent.VK_D] || keys[KeyEvent.VK_RIGHT])
-            dx = 1;
+
         boolean dead = false;
 
-            //if the snake hits itself
+    //if the snake hits itself
 //        if(snake.intersects(snake)) {
 //            dead = true;
 //        }
@@ -65,6 +63,14 @@ public class SnakeMain extends JPanel{
 //            snake.setY(568);
 //        }
 
+        if(keys[KeyEvent.VK_W] || keys[KeyEvent.VK_UP])
+            snake.changDir(2, framecounter);
+        if(keys[KeyEvent.VK_S] || keys[KeyEvent.VK_DOWN])
+            snake.changDir(1, framecounter);
+        if(keys[KeyEvent.VK_A] || keys[KeyEvent.VK_LEFT])
+            snake.changDir(3, framecounter);
+        if(keys[KeyEvent.VK_D] || keys[KeyEvent.VK_RIGHT])
+            snake.changDir(4, framecounter);
         snake.move();
         repaint();
     }
@@ -103,14 +109,13 @@ public class SnakeMain extends JPanel{
         @Override
         public void keyPressed(KeyEvent e) {
             int key = e.getKeyCode();
-            if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP)
-                snake.changDir(2);
-            if(key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN)
-                snake.changDir(1);
-            if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT)
-                snake.changDir(3);
-            if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT)
-                snake.changDir(4);
+            keys[key] = true;
+
+        }
+        @Override
+        public void keyReleased(KeyEvent e) {
+            int key = e.getKeyCode();
+            keys[key] = false;
         }
         });
         }

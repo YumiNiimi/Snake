@@ -13,7 +13,7 @@ public class Snake extends Sprite {
         super(Resources.apple, location, false);
         snakeBody = new ArrayList<>();
         for (int i = 0; i < 80; i += 4) {
-            snakeBody.add(new SnakeBodyPart(75 + i, 344));
+            snakeBody.add(new SnakeBodyPart(91 + i, 345));
         }
         dir = -1;
     }
@@ -35,7 +35,6 @@ public class Snake extends Sprite {
             }
             if (dir == up) {
                 snakeBody.add(new SnakeBodyPart(head.getX(), head.getY() - 4));
-
             }
             if (dir == left) {
                 snakeBody.add(new SnakeBodyPart(head.getX() - 4, head.getY()));
@@ -44,11 +43,14 @@ public class Snake extends Sprite {
                 snakeBody.add(new SnakeBodyPart(head.getX() + 4, head.getY()));
             }
         }
+
 //        }
     }
 
-    public void changDir(int dir){
-        this.dir = dir;
+
+    public void changDir(int dir, int x){
+        if(x%9 == 0)
+            this.dir = dir;
     }
 
 }
