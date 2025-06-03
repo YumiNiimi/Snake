@@ -1,20 +1,18 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
-public class Apple {
+public class Apple extends Sprite{
 
     public static final int SIZE = 25;
 
     private boolean isApple;
-    private int row, col, numApples;
+    private int numApples;
 
-    public Apple(int row, int col, boolean isApple){
-        this.row = row;
-        this.col = col;
+    //made apple extend sprite so i could use intersects method
+    public Apple(Point location, boolean isApple){
+
+        super(Resources.apple, location, isApple);
         this.isApple = isApple;
     }
 
-    public void draw(Graphics2D g2){
-        //draw rect
-
-    }
 }

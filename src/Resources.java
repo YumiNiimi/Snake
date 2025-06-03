@@ -9,11 +9,14 @@ public class Resources {
         // 3. Initialize the variable by copying and pasting and modifying the
         //    ImageIO line.
 
-    public static BufferedImage apple;
+    public static BufferedImage apple, snake;
 
     static{
         try{
             apple = ImageIO.read(new File("./res/apple.png"));
+
+            //added a snake image so it can have a hitbox for intersects method
+            snake = ImageIO.read(new File("./res/snake.png"));
 
         }catch(Exception e){e.printStackTrace();}
     }

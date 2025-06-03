@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Snake extends Sprite {
@@ -6,11 +7,12 @@ public class Snake extends Sprite {
     int dir;
     public static final int down = 1, up = 2, left = 3, right = 4;
     private ArrayList<SnakeBodyPart> snakeBody;
+    private BufferedImage image;
 
+    public Snake(/*BufferedImage image,*/ Point location) {
 
-    public Snake(Point location) {
-
-        super(Resources.apple, location, false);
+        //added image bc snake up/down/left/right so eyes change
+        super(Resources.snake, location, false);
         snakeBody = new ArrayList<>();
         for (int i = 0; i < 80; i += 4) {
             snakeBody.add(new SnakeBodyPart(91 + i, 345));
@@ -22,6 +24,10 @@ public class Snake extends Sprite {
        // loop to draw all parts in list
         for(SnakeBodyPart p : snakeBody)
             p.draw(g2);
+        //trying to get the head to draw over the body
+        g2.drawImage(image, snakeBody.getLast().getX(), snakeBody.getLast().getY(), null);
+
+
     }
 
 
@@ -43,6 +49,9 @@ public class Snake extends Sprite {
                 snakeBody.add(new SnakeBodyPart(head.getX() + 4, head.getY()));
             }
         }
+        for(SnakeBodyPart s : snakeBody)
+        if(s.getX() < 0 || s.getX() > 650)
+            changDir(-1, -1);
 
 //        }
     }

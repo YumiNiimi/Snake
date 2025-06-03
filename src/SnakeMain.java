@@ -28,12 +28,26 @@ public class SnakeMain extends JPanel{
         lives = 3;
         framecounter = 0;
         board = new Board(36, 36);
-        snake = new Snake(new Point(1, 1));
-
+        snake = new Snake(/*Resources.snake,*/ new Point(1, 1));
+        apples = new ArrayList<>();
             //how to add a new snake
             //sprites.add(new Turtle(Resources.turtle, new Point(410, 118), -3));
             //adding a snake
             //snake = new Sprite(Resources.snake, new Point(280, 568));
+
+
+        //apple at the starting point
+        apples.add(0, new Apple(new Point(13*36+20, 7*36+90), true));
+
+        //adds new apple at new point and deletes the old apple...doesn't work yet
+        // i think it's because the snake currently doesn't have an image and it's just drawn
+        for (int i = 0; i < apples.size(); i++) {
+            if(snake.intersects(apples.get(i))) {
+                apples.remove(0);
+                apples.add(new Apple((new Point((int)(Math.random()*17+1)*36+20, ((int)(Math.random()*15+1))*36+90)), true));
+            }
+        }
+
 
         timer = new Timer(1000/60, e->update());
         timer.start();
@@ -73,6 +87,8 @@ public class SnakeMain extends JPanel{
             snake.changDir(4, framecounter);
         snake.move();
         repaint();
+
+
     }
 
         @Override
@@ -97,8 +113,12 @@ public class SnakeMain extends JPanel{
             g2.drawString("YOU WIN", 110, 300);
         }
         board.draw(g2);
+        for(Apple a : apples)
+            a.draw(g2);
         snake.draw(g2);
 
+        //draws the image...not in right location rn
+        g2.drawImage(Resources.snake, snake.getX()*36+20, snake.getY()*36+90, null);
         }
 
     private boolean[] keys;
