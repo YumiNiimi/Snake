@@ -15,4 +15,8 @@ public class Apple extends Sprite{
         this.isApple = isApple;
     }
 
+    public Rectangle getHitBox(){
+        return new Rectangle(36, 46);
+    }
+
 }

@@ -33,4 +33,8 @@ public class SnakeBodyPart {
     public int getY() {
         return y;
     }
+
+    public Rectangle getHitBox() {
+        return new Rectangle(x, y, 30, 30);
+    }
 }

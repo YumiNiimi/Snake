@@ -50,6 +50,7 @@ public class Snake extends Sprite {
             }
         }
         for(SnakeBodyPart s : snakeBody)
+        //ts does not work !
         if(s.getX() < 0 || s.getX() > 650)
             changDir(-1, -1);
 
@@ -60,6 +61,11 @@ public class Snake extends Sprite {
     public void changDir(int dir, int x){
         if(x%9 == 0)
             this.dir = dir;
+    }
+
+    public Rectangle getHitBox(){
+        return snakeBody.getFirst().getHitBox();
+
     }
 
 }
