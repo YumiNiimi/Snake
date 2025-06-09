@@ -24,6 +24,8 @@ public class Snake extends Sprite {
        // loop to draw all parts in list
         for(SnakeBodyPart p : snakeBody)
             p.draw(g2);
+
+
         //trying to get the head to draw over the body
         g2.drawImage(image, snakeBody.getLast().getX(), snakeBody.getLast().getY(), null);
 

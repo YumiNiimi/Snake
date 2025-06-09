@@ -41,12 +41,8 @@ public class SnakeMain extends JPanel{
 
         //adds new apple at new point and deletes the old apple...doesn't work yet
         // i think it's because the snake currently doesn't have an image and it's just drawn
-        for (int i = 0; i < apples.size(); i++) {
-            if(snake.getHitBox().intersects(apples.get(i).getHitBox())) {
-                apples.remove(0);
-                apples.add(new Apple((new Point((int)(Math.random()*17+1)*36+20, ((int)(Math.random()*15+1))*36+90)), true));
-            }
-        }
+
+
 
 
         timer = new Timer(1000/60, e->update());
@@ -63,6 +59,11 @@ public class SnakeMain extends JPanel{
 //        }
 
         boolean dead = false;
+
+        if (snake.getHitBox().intersects(apples.get(0).getHitBox())) {
+            apples.remove(0);
+            apples.add(new Apple((new Point((int) (Math.random() * 17 + 1) * 36 + 20, ((int) (Math.random() * 15 + 1)) * 36 + 90)), true));
+        }
 
     //if the snake hits itself
 //        if(snake.intersects(snake)) {

@@ -16,7 +16,7 @@ public class Apple extends Sprite{
     }
 
     public Rectangle getHitBox(){
-        return new Rectangle(36, 46);
+        return new Rectangle(getX(), getY(),36, 36);
     }
 
 }
