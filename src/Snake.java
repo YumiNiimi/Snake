@@ -9,10 +9,10 @@ public class Snake extends Sprite {
     private ArrayList<SnakeBodyPart> snakeBody;
     private BufferedImage image;
 
-    public Snake(/*BufferedImage image,*/ Point location) {
+    public Snake(/*BufferedImage image,*/) {
 
         //added image bc snake up/down/left/right so eyes change
-        super(Resources.snake, location, false);
+        super(Resources.snake, new Point(91, 345), false);
         snakeBody = new ArrayList<>();
         for (int i = 0; i < 80; i += 4) {
             snakeBody.add(new SnakeBodyPart(91 + i, 345));
@@ -32,9 +32,12 @@ public class Snake extends Sprite {
 
     }
 
+    public void reset(){
+        snakeBody.removeAll(snakeBody);
+    }
+
 
     public void move() {
-//        while(snakeBody.size() > 1) {
         if(dir != -1) {
             snakeBody.remove(0);
             SnakeBodyPart head = snakeBody.getLast();
@@ -51,12 +54,7 @@ public class Snake extends Sprite {
                 snakeBody.add(new SnakeBodyPart(head.getX() + 4, head.getY()));
             }
         }
-        for(SnakeBodyPart s : snakeBody)
-        //ts does not work !
-        if(s.getX() < 0 || s.getX() > 650)
-            changDir(-1, -1);
 
-//        }
     }
 
 
@@ -68,6 +66,14 @@ public class Snake extends Sprite {
     public Rectangle getHitBox(){
         return snakeBody.getFirst().getHitBox();
 
+    }
+
+    public int getHeadX(){
+        return snakeBody.getFirst().getX();
+    }
+
+    public int getHeadY(){
+        return snakeBody.getFirst().getY();
     }
 
 }

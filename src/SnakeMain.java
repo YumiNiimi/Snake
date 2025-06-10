@@ -20,6 +20,9 @@ public class SnakeMain extends JPanel{
     private int framecounter;
     private Board board;
 
+    private boolean dead;
+
+
 
 
     public SnakeMain(int w, int h){
@@ -28,20 +31,20 @@ public class SnakeMain extends JPanel{
         lives = 3;
         framecounter = 0;
         board = new Board(36, 36);
-        snake = new Snake(/*Resources.snake,*/ new Point(1, 1));
+        snake = new Snake(/*Resources.snake,*/);
         apples = new ArrayList<>();
             //how to add a new snake
             //sprites.add(new Turtle(Resources.turtle, new Point(410, 118), -3));
             //adding a snake
             //snake = new Sprite(Resources.snake, new Point(280, 568));
 
+        dead = false;
 
         //apple at the starting point
         apples.add(0, new Apple(new Point(13*36+20, 7*36+90), true));
 
         //adds new apple at new point and deletes the old apple...doesn't work yet
         // i think it's because the snake currently doesn't have an image and it's just drawn
-
 
 
 
@@ -58,11 +61,12 @@ public class SnakeMain extends JPanel{
 //                sprite.move();
 //        }
 
-        boolean dead = false;
+
+
 
         if (snake.getHitBox().intersects(apples.get(0).getHitBox())) {
             apples.remove(0);
-            apples.add(new Apple((new Point((int) (Math.random() * 17 + 1) * 36 + 20, ((int) (Math.random() * 15 + 1)) * 36 + 90)), true));
+            apples.add(new Apple((new Point((int) (Math.random() * 17) * 36 + 20, ((int) (Math.random() * 15)) * 36 + 90)), true));
         }
 
     //if the snake hits itself
@@ -87,6 +91,17 @@ public class SnakeMain extends JPanel{
         if(keys[KeyEvent.VK_D] || keys[KeyEvent.VK_RIGHT])
             snake.changDir(4, framecounter);
         snake.move();
+        if(snake.getHeadX() < 0 || snake.getX() > 650)
+            dead = true;
+
+        if(snake.getHeadY() < 0 || snake.getY() > 650)
+            dead = true;
+
+        if(dead) {
+            //snake.
+            snake.reset();
+            snake = new Snake(/*Resources.snake,*/);
+        }
         repaint();
 
 
