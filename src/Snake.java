@@ -76,4 +76,8 @@ public class Snake extends Sprite {
         return snakeBody.getFirst().getY();
     }
 
+    public int getDir(){
+        return dir;
+    }
+
 }

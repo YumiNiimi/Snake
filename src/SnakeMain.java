@@ -91,11 +91,26 @@ public class SnakeMain extends JPanel{
         if(keys[KeyEvent.VK_D] || keys[KeyEvent.VK_RIGHT])
             snake.changDir(4, framecounter);
         snake.move();
-        if(snake.getHeadX() < 0 || snake.getX() > 650)
-            dead = true;
+        if(snake.getHeadX() < 90){
+            if(snake.getDir() == 3)
+                dead = true;
+        }
 
-        if(snake.getHeadY() < 0 || snake.getY() > 650)
-            dead = true;
+        if(snake.getHeadX() > 532) {
+            if(snake.getDir() == 4)
+                dead = true;
+        }
+
+        if(snake.getHeadY() < 160){
+            if(snake.getDir() == 2)
+                dead = true;
+        }
+
+
+        if(snake.getHeadY() > 528) {
+            if(snake.getDir() == 1)
+                dead = true;
+        }
 
         if(dead) {
             //snake.
