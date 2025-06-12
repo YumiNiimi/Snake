@@ -65,6 +65,7 @@ public class SnakeMain extends JPanel{
 
 
         if (snake.getHitBox().intersects(apples.get(0).getHitBox())) {
+            snake.grow();
             apples.remove(0);
             apples.add(new Apple((new Point((int) (Math.random() * 17) * 36 + 20, ((int) (Math.random() * 15)) * 36 + 90)), true));
         }

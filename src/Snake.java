@@ -40,7 +40,7 @@ public class Snake extends Sprite {
     public void move() {
         if(dir != -1) {
             snakeBody.remove(0);
-            SnakeBodyPart head = snakeBody.getLast();
+            SnakeBodyPart head = snakeBody.getFirst();
             if (dir == down) {
                 snakeBody.add(new SnakeBodyPart(head.getX(), head.getY() + 4));
             }
@@ -78,6 +78,12 @@ public class Snake extends Sprite {
 
     public int getDir(){
         return dir;
+    }
+
+    public void grow(){
+        for (int i = 0; i < 5; i++) {
+            snakeBody.add(new SnakeBodyPart(snakeBody.getLast().getX(), snakeBody.getLast().getY()));
+        }
     }
 
 }
