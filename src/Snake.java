@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class Snake extends Sprite {
+public class Snake {
 
     int dir;
     public static final int down = 1, up = 2, left = 3, right = 4;
@@ -10,9 +10,9 @@ public class Snake extends Sprite {
     private BufferedImage image;
 
     public Snake(BufferedImage image) {
-
+            this.image = image;
         //added image bc snake up/down/left/right so eyes change
-        super(image, new Point(91, 345), false);
+//        super(image, new Point(91, 345), false);
         snakeBody = new ArrayList<>();
         for (int i = 0; i < 80; i += 4) {
             snakeBody.add(new SnakeBodyPart(91 + i, 345));
@@ -21,21 +21,26 @@ public class Snake extends Sprite {
     }
 
     public void draw(Graphics2D g2) {
-       // loop to draw all parts in list
         for(SnakeBodyPart p : snakeBody)
             p.draw(g2);
 
-
-        //trying to get the head to draw over the body
         g2.drawImage(image, snakeBody.getLast().getX(), snakeBody.getLast().getY(), null);
-
-
     }
 
     public void reset(){
         snakeBody.removeAll(snakeBody);
     }
 
+    public void changeImage(){
+        if(dir == 1)
+            image = Resources.snakeDown;
+        if(dir == 2)
+            image = Resources.snakeUp;
+        if(dir == 3)
+            image = Resources.snakeLeft;
+        if(dir == 4)
+            image = Resources.snakeRight;
+    }
 
     public void move() {
         if(dir != -1) {
@@ -43,15 +48,19 @@ public class Snake extends Sprite {
             SnakeBodyPart head = snakeBody.getLast();
             if (dir == down) {
                 snakeBody.add(new SnakeBodyPart(head.getX(), head.getY() + 4));
+                changeImage();
             }
             if (dir == up) {
                 snakeBody.add(new SnakeBodyPart(head.getX(), head.getY() - 4));
+                changeImage();
             }
             if (dir == left) {
                 snakeBody.add(new SnakeBodyPart(head.getX() - 4, head.getY()));
+                changeImage();
             }
             if (dir == right) {
                 snakeBody.add(new SnakeBodyPart(head.getX() + 4, head.getY()));
+                changeImage();
             }
         }
 

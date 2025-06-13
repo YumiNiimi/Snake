@@ -18,9 +18,9 @@ public class Resources {
 
             //added a snake image so it can have a hitbox for intersects method
             snakeRight = ImageIO.read(new File("./res/snakeright.png"));
-            snakeLeft = ImageIO.read(new File("./res/snakeright.png"));
+            snakeLeft = ImageIO.read(new File("./res/snakeleft.png"));
             snakeUp = ImageIO.read(new File("./res/snakeup.png"));
-            snakeDown = ImageIO.read(new File("./res/snakeright.png"));
+            snakeDown = ImageIO.read(new File("./res/snakedown.png"));
 
 
         }catch(Exception e){e.printStackTrace();}

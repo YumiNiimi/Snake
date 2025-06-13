@@ -95,6 +95,9 @@ public class SnakeMain extends JPanel{
 
         g2.setColor(Color.WHITE);
         g2.setFont(new Font("Georgia", Font.PLAIN, 80));
+        if(dead){
+          g2.drawString("YOU LOSE", 25, 25);
+        }
 
         board.draw(g2);
 
@@ -103,7 +106,6 @@ public class SnakeMain extends JPanel{
 
         snake.draw(g2);
 
-        g2.drawImage(Resources.snakeRight, snake.getX()*36+20, snake.getY()*36+90, null);
         }
 
 
