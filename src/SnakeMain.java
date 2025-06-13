@@ -28,7 +28,7 @@ public class SnakeMain extends JPanel{
 
         board = new Board(36, 36);
 
-        snake = new Snake(/*Resources.snake,*/);
+        snake = new Snake(Resources.snakeRight);
 
         apples = new ArrayList<>();
         apples.add(0, new Apple(new Point(13*36+20, 7*36+90), true));
@@ -81,7 +81,7 @@ public class SnakeMain extends JPanel{
 
         if(dead) {
             snake.reset();
-            snake = new Snake(/*Resources.snake,*/);
+            snake = new Snake(Resources.snakeRight);
         }
 
         repaint();
@@ -103,7 +103,7 @@ public class SnakeMain extends JPanel{
 
         snake.draw(g2);
 
-        g2.drawImage(Resources.snake, snake.getX()*36+20, snake.getY()*36+90, null);
+        g2.drawImage(Resources.snakeRight, snake.getX()*36+20, snake.getY()*36+90, null);
         }
 
 

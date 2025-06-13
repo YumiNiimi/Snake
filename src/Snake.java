@@ -9,10 +9,10 @@ public class Snake extends Sprite {
     private ArrayList<SnakeBodyPart> snakeBody;
     private BufferedImage image;
 
-    public Snake(/*BufferedImage image,*/) {
+    public Snake(BufferedImage image) {
 
         //added image bc snake up/down/left/right so eyes change
-        super(Resources.snake, new Point(91, 345), false);
+        super(image, new Point(91, 345), false);
         snakeBody = new ArrayList<>();
         for (int i = 0; i < 80; i += 4) {
             snakeBody.add(new SnakeBodyPart(91 + i, 345));
