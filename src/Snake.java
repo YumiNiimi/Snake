@@ -40,7 +40,7 @@ public class Snake extends Sprite {
     public void move() {
         if(dir != -1) {
             snakeBody.remove(0);
-            SnakeBodyPart head = snakeBody.getFirst();
+            SnakeBodyPart head = snakeBody.getLast();
             if (dir == down) {
                 snakeBody.add(new SnakeBodyPart(head.getX(), head.getY() + 4));
             }
@@ -64,16 +64,16 @@ public class Snake extends Sprite {
     }
 
     public Rectangle getHitBox(){
-        return snakeBody.getFirst().getHitBox();
+        return snakeBody.getLast().getHitBox();
 
     }
 
     public int getHeadX(){
-        return snakeBody.getFirst().getX();
+        return snakeBody.getLast().getX();
     }
 
     public int getHeadY(){
-        return snakeBody.getFirst().getY();
+        return snakeBody.getLast().getY();
     }
 
     public int getDir(){
@@ -82,7 +82,7 @@ public class Snake extends Sprite {
 
     public void grow(){
         for (int i = 0; i < 5; i++) {
-            snakeBody.add(new SnakeBodyPart(snakeBody.getLast().getX(), snakeBody.getLast().getY()));
+            snakeBody.add(0, new SnakeBodyPart(snakeBody.getFirst().getX(), snakeBody.getFirst().getY()));
         }
     }
 

@@ -6,82 +6,50 @@ import java.util.ArrayList;
 
 public class SnakeMain extends JPanel{
 
-
-    public static final int WIDTH=600, HEIGHT=600;
-
     private Timer timer;
 
     private Snake snake;
+
     private ArrayList<Apple> apples;
 
-    private int lives;
-    private int n;
-
     private int framecounter;
+
     private Board board;
 
     private boolean dead;
 
-
+    private boolean[] keys;
 
 
     public SnakeMain(int w, int h){
         setSize(w, h);
-        n = 0;
-        lives = 3;
+
         framecounter = 0;
+
         board = new Board(36, 36);
+
         snake = new Snake(/*Resources.snake,*/);
+
         apples = new ArrayList<>();
-            //how to add a new snake
-            //sprites.add(new Turtle(Resources.turtle, new Point(410, 118), -3));
-            //adding a snake
-            //snake = new Sprite(Resources.snake, new Point(280, 568));
+        apples.add(0, new Apple(new Point(13*36+20, 7*36+90), true));
 
         dead = false;
 
-        //apple at the starting point
-        apples.add(0, new Apple(new Point(13*36+20, 7*36+90), true));
-
-        //adds new apple at new point and deletes the old apple...doesn't work yet
-        // i think it's because the snake currently doesn't have an image and it's just drawn
-
-
-
         timer = new Timer(1000/60, e->update());
         timer.start();
+
         setupKeyListener();
     }
 
-        // called every frame (60 times per second by default) by the timer
+
     public void update(){
         framecounter++;
-        // update any time-based changes here
-//        for(Sprite sprite: snakeBody) {
-//                sprite.move();
-//        }
-
-
-
 
         if (snake.getHitBox().intersects(apples.get(0).getHitBox())) {
             snake.grow();
             apples.remove(0);
             apples.add(new Apple((new Point((int) (Math.random() * 17) * 36 + 20, ((int) (Math.random() * 15)) * 36 + 90)), true));
         }
-
-    //if the snake hits itself
-//        if(snake.intersects(snake)) {
-//            dead = true;
-//        }
-
-            //if the snake hits the wall
-//        if (snake.getX() < 5 || snake.getX() > 595) {
-//            dead = true;
-//            //snake.setImage(Resources.snake);
-//            snake.setX(280);
-//            snake.setY(568);
-//        }
 
         if(keys[KeyEvent.VK_W] || keys[KeyEvent.VK_UP])
             snake.changDir(2, framecounter);
@@ -91,69 +59,53 @@ public class SnakeMain extends JPanel{
             snake.changDir(3, framecounter);
         if(keys[KeyEvent.VK_D] || keys[KeyEvent.VK_RIGHT])
             snake.changDir(4, framecounter);
+
         snake.move();
-        if(snake.getHeadX() < 90){
+
+        if(snake.getHeadX() < 15){
             if(snake.getDir() == 3)
                 dead = true;
         }
-
-        if(snake.getHeadX() > 532) {
+        if(snake.getHeadX() > 605) {
             if(snake.getDir() == 4)
                 dead = true;
         }
-
-        if(snake.getHeadY() < 160){
+        if(snake.getHeadY() < 87){
             if(snake.getDir() == 2)
                 dead = true;
         }
-
-
-        if(snake.getHeadY() > 528) {
+        if(snake.getHeadY() > 603) {
             if(snake.getDir() == 1)
                 dead = true;
         }
 
         if(dead) {
-            //snake.
             snake.reset();
             snake = new Snake(/*Resources.snake,*/);
         }
+
         repaint();
-
-
     }
 
-        @Override
+
+    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-            // all drawing happens here.
-            // Best practice is to NOT change the state of any instance fields
-            // so the graphics can update at any time
-        g2.setColor(Color.BLACK);
-
-//        for(Sprite sprite : snakeBody)
-//            sprite.draw(g2);
 
         g2.setColor(Color.WHITE);
         g2.setFont(new Font("Georgia", Font.PLAIN, 80));
 
-        if(lives <= 0) {
-            g2.drawString("GAME OVER", 60, 320);
-        }
-        if(n == 5) {
-            g2.drawString("YOU WIN", 110, 300);
-        }
         board.draw(g2);
+
         for(Apple a : apples)
             a.draw(g2);
+
         snake.draw(g2);
 
-        //draws the image...not in right location rn
         g2.drawImage(Resources.snake, snake.getX()*36+20, snake.getY()*36+90, null);
         }
 
-    private boolean[] keys;
 
     public void setupKeyListener(){
         keys = new boolean[255];
@@ -170,7 +122,7 @@ public class SnakeMain extends JPanel{
             keys[key] = false;
         }
         });
-        }
+    }
 
 
     public static void main(String[] args) {
